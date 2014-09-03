@@ -11,6 +11,10 @@
                name="applicationCSS"
                value="platform:/plugin/de.afinke.rcp.logging/css/default.css">
          </property>
+         <property
+               name="appName"
+               value="de.afinke.rcp.logging">
+         </property>
       </product>
    </extension>
 
