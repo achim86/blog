@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+    <category-def name="all" label="Logging" version="1.0.0"/>
+    <bundle id="org.apache.felix.configadmin" version="0.0.0">
+        <category name="all"/>
+    </bundle>
+    <bundle id="org.apache.felix.fileinstall" version="0.0.0">
+        <category name="all"/>
+    </bundle>
+    <bundle id="org.ops4j.pax.logging.pax-logging-service" version="0.0.0">
+        <category name="all"/>
+    </bundle>
+    <bundle id="org.ops4j.pax.logging.pax-logging-api" version="0.0.0">
+        <category name="all"/>
+    </bundle>
+</site>
