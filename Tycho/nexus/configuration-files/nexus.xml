@@ -1,0 +1,22 @@
+<!-- Snippet of the relevant configuration -->
+<repository>
+	<id>logging-p2</id>
+	<name>logging-p2</name>
+	<providerRole>org.eclipse.tycho.nexus.internal.plugin.UnzipRepository</providerRole>
+	<providerHint>org.eclipse.tycho.nexus.plugin.DefaultUnzipRepository</providerHint>
+	<localStatus>IN_SERVICE</localStatus>
+	<notFoundCacheTTL>15</notFoundCacheTTL>
+	<userManaged>true</userManaged>
+	<exposed>true</exposed>
+	<browseable>true</browseable>
+	<writePolicy>READ_ONLY</writePolicy>
+	<searchable>true</searchable>
+	<localStorage>
+		<provider>file</provider>
+	</localStorage>
+	<externalConfiguration>
+		<masterRepositoryId>logging-mvn</masterRepositoryId>
+		<synchronizeAtStartup>true</synchronizeAtStartup>
+		<useVirtualVersion>true</useVirtualVersion>
+	</externalConfiguration>
+</repository>
