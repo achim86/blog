@@ -40,9 +40,7 @@ public class CamelDBCaller extends Main {
         };
     }
 
-    /*
-        World database can be downloaded at https://dev.mysql.com/doc/index-other.html.
-     */
+    // World database can be downloaded at https://dev.mysql.com/doc/index-other.html.
     private static DataSource createWorldDataSource() {
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
