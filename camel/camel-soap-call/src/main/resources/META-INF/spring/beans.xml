@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <cxf:cxfEndpoint id="serviceEndpoint"
+                     address="http://www.webservicex.com/globalweather.asmx"
+                     wsdlURL="http://www.webservicex.com/globalweather.asmx?wsdl"
+                     serviceClass="net.webservicex.GlobalWeatherSoap"
+                     serviceName="s:GlobalWeather"
+                     endpointName="s:GlobalWeatherSoap"
+                     xmlns:s="http://www.webserviceX.NET"/>
+
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route>
+            <from uri="timer://foo?fixedRate=true&amp;period=1s"/>
+            <!-- Set up the SOAP Payload
+                 (you may want to use a complex Object for your service here which can be set via a Processor -->
+            <setBody>
+                <simple>Germany</simple>
+            </setBody>
+            <!-- Call the SOAP service -->
+            <to uri="cxf:bean:serviceEndpoint?defaultOperationName=GetCitiesByCountry"/>
+            <!-- Handle the response by getting the payload out of the CXF list -->
+            <transform>
+                <simple>${body[0]}</simple>
+            </transform>
+            <!-- Process the data taken out from the SOAP payload -->
+            <to uri="stream:out"/>
+        </route>
+    </camelContext>
+</beans>
