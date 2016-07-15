@@ -7,47 +7,48 @@ This application reads tweets published for #Election2016, process them by doing
 1. Create your own [Twitter OAuth access token](https://dev.twitter.com/oauth/overview/application-owner-access-tokens) and put it into ```twitter4j.properties```.
 2. Create your own [Google API Key](https://developers.google.com/maps/documentation/geocoding/get-api-key) and put it into ```googleapi.properties```.
 3. Download and [Elasticsearch 2.3.3](https://www.elastic.co/downloads/past-releases/elasticsearch-2-3-3)
-4. Create Elasticsearch Index and Mappings using ```
-curl -XPOST localhost:9200/spark -d '{
-    "settings" : {
-        "number_of_shards" : 1
-    },
-    "mappings": {
-        "tweets": {
-            "properties": {
-                "created_at": {
-                    "type": "date",
-                    "format": "yyyy-MM-dd HH:mm:ss"
-                },
-                "geolocation": {
-                    "type": "geo_point"
-                },
-                "hashtags": {
-                    "type": "string"
-                },
-                "location": {
-                    "type": "string"
-                },
-                "sentiment_afinn": {
-                    "type": "string"
-                },
-                "sentiment_corenlp": {
-                    "type": "string"
-                },
-                "sentiment_liub": {
-                    "type": "string"
-                },
-                "text": {
-                    "type": "string"
-                },
-                "user": {
-                    "type": "string"
+4. Create Elasticsearch Index and Mappings using 
+    ```
+    curl -XPOST localhost:9200/spark -d '{
+        "settings" : {
+            "number_of_shards" : 1
+        },
+        "mappings": {
+            "tweets": {
+                "properties": {
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    },
+                    "geolocation": {
+                        "type": "geo_point"
+                    },
+                    "hashtags": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "sentiment_afinn": {
+                        "type": "string"
+                    },
+                    "sentiment_corenlp": {
+                        "type": "string"
+                    },
+                    "sentiment_liub": {
+                        "type": "string"
+                    },
+                    "text": {
+                        "type": "string"
+                    },
+                    "user": {
+                        "type": "string"
+                    }
                 }
             }
         }
-    }
-}'
-```
+    }'
+    ```
 5. Run ElectionAnalyzesRunner
 6. Download [Kibana 4.5.x](https://www.elastic.co/downloads/kibana) to visualize and analyze your data.
 
