@@ -1,0 +1,39 @@
+curl -XPOST localhost:9200/spark -d '{
+    "settings" : {
+        "number_of_shards" : 1
+    },
+    "mappings": {
+        "tweets": {
+            "properties": {
+                "created_at": {
+                    "type": "date",
+                    "format": "yyyy-MM-dd HH:mm:ss"
+                },
+                "geolocation": {
+                    "type": "geo_point"
+                },
+                "hashtags": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "sentiment_afinn": {
+                    "type": "string"
+                },
+                "sentiment_corenlp": {
+                    "type": "string"
+                },
+                "sentiment_liub": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "user": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}'
