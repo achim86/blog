@@ -1,7 +1,7 @@
 #Spark Streaming and Elasticsearch combined with Twitter sentiment analyses and Google Maps services
 
 ##Abstract
-This application reads tweets published for #Election2016, process them by doing sentiment (three different algorithms) and location analyzes and finally publishes the results to elasticsearch.
+This application reads tweets published for ```#Election2016```, process them by doing sentiment (three different algorithms) and location analyzes and finally publishes the results to elasticsearch.
 
 ##Installation Guide
 1. Create your own [Twitter OAuth access token](https://dev.twitter.com/oauth/overview/application-owner-access-tokens) and put it into ```twitter4j.properties```.
@@ -53,8 +53,8 @@ This application reads tweets published for #Election2016, process them by doing
 6. Download [Kibana 4.5.x](https://www.elastic.co/downloads/kibana) to visualize and analyze your data.
 
 ##Useful Links
-- Elasticsearch http://localhost:9200, http://localhost:9200/spark/_search?pretty
-- Kibana http://localhost:5601
+- Elasticsearch: http://localhost:9200, http://localhost:9200/spark/_search?pretty
+- Kibana: http://localhost:5601
 
 ##Possible Improvements
 - Include hashtags like ```#CrookedHillary``` or ```#NeverTrump``` into sentiment analyzes.
