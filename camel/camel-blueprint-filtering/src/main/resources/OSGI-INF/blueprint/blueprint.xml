@@ -1,0 +1,30 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+    <!-- ManagedService Bean reading from camel.filtering.cfg file. -->
+    <bean id="messageRouter" class="de.afinke.blog.camel.MessageRouter"/>
+    <service interface="org.osgi.service.cm.ManagedService" ref="messageRouter">
+        <service-properties>
+            <entry key="service.pid" value="camel.filtering"/>
+        </service-properties>
+    </service>
+
+    <!-- The Broker to be used in the test scenario. -->
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+        <property name="userName" value="tadmin"/>
+        <property name="password" value="tadmin"/>
+    </bean>
+
+    <!-- The route to be used in the test scenario. -->
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+        <route id="filter">
+            <from uri="activemq:queue:input"/>
+            <recipientList>
+                <method ref="messageRouter" method="routeTo"/>
+            </recipientList>
+        </route>
+    </camelContext>
+
+</blueprint>
