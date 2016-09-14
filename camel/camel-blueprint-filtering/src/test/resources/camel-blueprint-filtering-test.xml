@@ -1,0 +1,20 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+
+        <route id="input">
+            <from uri="timer:foo?repeatCount=1"/>
+            <setBody>
+                <constant>Hello World!</constant>
+            </setBody>
+            <setHeader headerName="country">
+                <constant>GER</constant>
+            </setHeader>
+            <to uri="vm:input"/>
+        </route>
+
+    </camelContext>
+
+</blueprint>

@@ -1,4 +1,4 @@
-package de.afinke.blog.camel.main;
+package de.afinke.blog.camel;
 
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.test.blueprint.Main;
@@ -11,7 +11,7 @@ public class MessageProducer {
         main.start();
 
         ProducerTemplate template = main.getCamelTemplate();
-        template.sendBodyAndHeader("direct:input", "Hello World", "country", "GER");
+        template.sendBodyAndHeader("vm:input", "Hello World", "country", "GER");
 
         Thread.sleep(1000);
         System.out.println("### STOPPING MAIN ###");
