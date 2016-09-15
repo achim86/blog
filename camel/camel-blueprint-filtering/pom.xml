@@ -12,6 +12,7 @@
 
     <properties>
         <camel.version>2.15.4</camel.version>
+        <osgi.version>5.0.0</osgi.version>
     </properties>
 
     <dependencies>
@@ -19,6 +20,16 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-stream</artifactId>
             <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>${osgi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+            <version>${osgi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

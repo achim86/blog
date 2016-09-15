@@ -1,18 +1,13 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
            xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-    <cm:property-placeholder persistent-id="camel.filtering" update-strategy="reload">
-        <cm:default-properties>
-            <cm:property name="countries" value="GER,LUX"/>
-        </cm:default-properties>
-    </cm:property-placeholder>
-
-    <bean id="messageFilter" class="de.afinke.blog.camel.MessageFilter">
-        <property name="countries" value="${countries}"/>
-    </bean>
-
+    <bean id="messageFilter" class="de.afinke.blog.camel.MessageFilter"/>
+    <service interface="org.osgi.service.cm.ManagedService" ref="messageFilter">
+        <service-properties>
+            <entry key="service.pid" value="camel.filtering"/>
+        </service-properties>
+    </service>
     <camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
         <route id="input">
@@ -27,13 +22,13 @@
 
         <!-- Throws the trash away. -->
         <route id="trash">
-            <from uri="direct:trash"/>
+            <from uri="vm:trash"/>
             <stop/>
         </route>
 
         <!-- Prints everything which ends up in output. -->
         <route id="output">
-            <from uri="direct:output"/>
+            <from uri="vm:output"/>
             <to uri="stream:out"/>
         </route>
 
