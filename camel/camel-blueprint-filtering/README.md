@@ -5,4 +5,4 @@ The Recipient List pattern allows us to route messages to a number of dynamicall
 #Try it out!
 Simply run the MessageProducer class to get the idea. When you want to run the sample in Karaf you can build and deploy the bundle and after use the provided blueprint file in test resources to generate a test message. The countries can be changed by putting the *camel.filtering.cfg* file from test resources in Karaf's etc folder.
 #References
-[Using the Configuration Admin Service]: http://www.liquid-reality.de/display/liquid/2011/09/23/Karaf+Tutorial+Part+2+-+Using+the+Configuration+Admin+Service
+http://www.liquid-reality.de/display/liquid/2011/09/23/Karaf+Tutorial+Part+2+-+Using+the+Configuration+Admin+Service
