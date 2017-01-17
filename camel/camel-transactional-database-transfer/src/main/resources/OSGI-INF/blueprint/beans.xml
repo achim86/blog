@@ -1,0 +1,44 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="transactionManager" interface="org.springframework.transaction.PlatformTransactionManager"/>
+    <reference id="javaxTransactionManager" interface="javax.transaction.TransactionManager"/>
+
+    <bean id="dsWorldOne" class="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/worldone"/>
+        <property name="user" value="root"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <bean id="worldOne" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource" destroy-method="close">
+        <property name="xaDataSourceInstance" ref="dsWorldOne"/>
+        <property name="defaultAutoCommit" value="false"/>
+        <property name="transactionManager" ref="javaxTransactionManager"/>
+    </bean>
+
+    <bean id="sqlWorldOne" class="org.apache.camel.component.sql.SqlComponent">
+        <property name="dataSource" ref="worldOne"/>
+    </bean>
+
+    <bean id="dsWorldTwo" class="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/worldtwo"/>
+        <property name="user" value="root"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <bean id="worldTwo" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource" destroy-method="close">
+        <property name="xaDataSourceInstance" ref="dsWorldTwo"/>
+        <property name="defaultAutoCommit" value="false"/>
+        <property name="transactionManager" ref="javaxTransactionManager"/>
+    </bean>
+
+    <bean id="sqlWorldTwo" class="org.apache.camel.component.sql.SqlComponent">
+        <property name="dataSource" ref="worldTwo"/>
+    </bean>
+
+    <bean id="dbTransferRoute" class="de.afinke.blog.camel.DbTransferRoute"/>
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+        <routeBuilder ref="dbTransferRoute"/>
+    </camelContext>
+
+</blueprint>
