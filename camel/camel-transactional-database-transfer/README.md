@@ -3,6 +3,9 @@ Transfers city table transactional to another database. To get some input for th
 
 To run the sample install the following in TESB (6.2.1)
 
+Install the data source configs into etc.
+
+feature:repo-add pax-jdbc 0.10.0-SNAPSHOT
 feature:install camel-sql pax-jdbc-mysql pax-jdbc-pool-dbcp2
 
-install mvn:de.afinke.blog/camel-transactional-database-transfer/1.0.0-SNAPSHOT
+install -s mvn:de.afinke.blog/camel-transactional-database-transfer/1.0.0-SNAPSHOT
